@@ -1,0 +1,30 @@
+NTNU-NOTIFICATION-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+	NOTIFICATION-TYPE, MODULE-IDENTITY, enterprises 
+FROM SNMPv2-SMI;
+
+
+
+ntnuNotificationMIB MODULE-IDENTITY
+	LAST-UPDATED "201910150000Z"
+	ORGANIZATION "NTNU"
+	CONTACT-INFO
+		"
+			use fax
+		"
+	DESCRIPTION
+		" NTNU Module identity for TTM4128 test "
+	
+	REVISION "201910150000Z"
+	DESCRIPTION
+		" First draft"
+	::= {enterprises 12345 2 }
+
+trapExample NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"This trap is used to test traps in TTM4128"
+	::= { ntnuNotificationMIB 1 }
+
+END

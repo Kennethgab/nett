@@ -1,0 +1,7 @@
+snmptrap -v 2c -c [commstring] 10.0.2.15 "" NTNU-NOTIFICATION-MIB::trapExample SNMPv2-MIB::sysLocation.0 s "Just here"
+snmptranslate -On NTNU-NOTIFICATION-MIB::trapExample
+sudo apt-get install snmp-mibs-downloader
+download-mibs
+
+sudo snmptrapd -f -Lo -c snmptrapd.conf
+disableAuthorization yes
