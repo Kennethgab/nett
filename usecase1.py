@@ -35,8 +35,16 @@ def main():
 
     ip = "129.241.209.17"
     com = "ttm4128"
-    datagrams = os_callout("snmpget", com, ip, datagramsoid)
-    print(datagrams)
+    threshold = 3000
+    measures = []
+    first_measure = os_callout("snmpget", com, ip, datagramsoid)
+    measures.append(int(first_measure))
+    while True:
+        time.sleep(12)
+        new_measure = os_callout("snmpget", com, ip, datagramsoid)
+        measures.append(int(new_measure))
+        difference = measures[-1] - measures[-2]
+        print(difference)
 
 
 if __name__ == "__main__":
