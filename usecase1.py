@@ -54,8 +54,8 @@ def main():
         print("Taken new measure: " + new_measure)
         difference = measures[-1] - measures[-2]
         if(difference >= threshold):
-
-        print(difference)
+            print("Sending a trap!")
+            send_trap(ip, com, measures[-1], difference)
 
 
 if __name__ == "__main__":
