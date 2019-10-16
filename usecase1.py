@@ -43,6 +43,7 @@ def main():
         time.sleep(12)
         new_measure = os_callout("snmpget", com, ip, datagramsoid)
         measures.append(int(new_measure))
+        print("Taken new measure: " + new_measure)
         difference = measures[-1] - measures[-2]
         print(difference)
 
