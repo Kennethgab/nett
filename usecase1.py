@@ -27,24 +27,34 @@ def os_callout(cmd, com, ip, oid):
     return output
 
 
+def send_trap(ip, com, latest_measure, difference):
+
+    cmd = "snmptrap"
+    # text to set trap value
+    tid = " '' NTNU-NOTIFICATION-MIB::trapExample SNMPv2-MIB::sysLocation.0 s 'just here in sahara, chilling.'"
+    os_callout(cmd, com, ip, oid)
+
+
 def main():
 
     datagramsoid = ".1.3.6.1.2.1.4.31.1.1.4.1"
     sysnameoid = " 1.3.6.1.2.1.1.5.0"
     ttloid = "ipDefaultTTL.0"
 
-    ip = "129.241.209.17"
+    ip = "129.241.209.18"
     com = "ttm4128"
-    threshold = 3000
+    threshold = 1300
     measures = []
     first_measure = os_callout("snmpget", com, ip, datagramsoid)
     measures.append(int(first_measure))
     while True:
-        time.sleep(12)
+        time.sleep(120)
         new_measure = os_callout("snmpget", com, ip, datagramsoid)
         measures.append(int(new_measure))
         print("Taken new measure: " + new_measure)
         difference = measures[-1] - measures[-2]
+        if(difference >= threshold):
+
         print(difference)
 
 
