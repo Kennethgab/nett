@@ -31,7 +31,7 @@ def send_trap(ip, com, latest_measure, difference):
 
     cmd = "snmptrap"
     # text to set trap value
-    tid = " '' NTNU-NOTIFICATION-MIB::trapExample SNMPv2-MIB::sysLocation.0 s 'just here in sahara, chilling.'"
+    oid = " '' NTNU-NOTIFICATION-MIB::trapExample SNMPv2-MIB::sysLocation.0 s 'just here in sahara, chilling.'"
     os_callout(cmd, com, ip, oid)
 
 
