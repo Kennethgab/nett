@@ -17,13 +17,14 @@ def snmpformat(cmd, text):
         return m.group(1)
 
 
-def os_callout(cmd, com, ip, oid):
+def os_callout(cmd, com, ip, oid, clean=True):
 
     snmpcmd = "{} -v 2c -c {} {} {}".format(
         cmd, com, ip, oid)
     p = subprocess.Popen(snmpcmd, stdout=subprocess.PIPE, shell=True)
     output = p.communicate()[0]
-    output = snmpformat(cmd, output)
+    if clean:
+        output = snmpformat(cmd, output)
     return output
 
 
@@ -34,9 +35,9 @@ def send_trap(ip, com, latest_measure, difference, sysname):
 
     cmd = "snmptrap"
     # text to set trap value
-    oid = " '' NTNU-NOTIFICATION-MIB::trapExample SNMPv2-MIB::sysName.0 s '{}' {} s '{}'".format(
-        sysname, datagramsoid, latest_measure)
-    os_callout(cmd, com, ip, oid)
+    oid = " '' NTNU-NOTIFICATION-MIB::trapExample SNMPv2-MIB::sysName.0 s '{}' {} Counter64 '{}'".format(
+        sysname, datagramsoid, int(latest_measure))
+    os_callout(cmd, com, ip, oid, clean=False)
 
 
 def main():
