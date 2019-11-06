@@ -1,6 +1,7 @@
 import requests
 from requests.exceptions import HTTPError
 import xml.etree.ElementTree as ET
+import pywbem
 
 class CIMHandler:
     # Set config parameters
@@ -8,22 +9,23 @@ class CIMHandler:
     def __init__(self):
         self.root_url = "http://ttm4128.item.ntnu.no:5988/cimom"
 
-    # Send request to CIM
-    def send_req(self,className):
-        tree = ET.parse("cimtemplate.xml")
-        tree = tree.getroot()
-        xml_str = ET.tostring(tree).decode()
-        headers = {'CIMProtocolVersion': '2.0', 'CIMOperation' : 'MethodCall', 'Content-Type' : 'application/xml'}
-        r = requests.post(self.root_url, data=xml_str, headers=headers)
-        print(r.content)
+    def send_req(self, className):
 
+        classname = className
+        namespace = 'root/cimv2'
 
-    def write_xml(self, className):
-        pass
+        conn = pywbem.WBEMConnection(self.root_url, ('user','password'),
+                default_namespace=namespace,
+                no_verification=True)
+        try:
+            insts = conn.EnumerateInstances(classname)
+        except pywbem.Error as exc:
+            print('Operation failed: %s' % exc)
+        else:
+            print('Retrieved %s instances' % (len(insts)))
+            payload = "path= "
+            for inst in insts:
+                payload+=str(inst.path) + '\n'
+                payload += str(inst.tomof()) + '\n'
 
-def main():
-    cim = CIMHandler()
-    cim.send_req("CIM_OperatingSystem")
-
-if __name__ == "__main__":
-    main()
+            return payload
