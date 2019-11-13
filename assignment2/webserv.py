@@ -23,7 +23,7 @@ class webmHTTPRequestHandler(BaseHTTPRequestHandler):
 #        response.write(b'This is a POST request\n')
  #       response.write(b'Received: \n')
         parsed_data = json.loads(body)
-        operation = parsed_data['operation']
+        operation = parsed_data['method']
         classname = parsed_data['className']
         instancename = parsed_data['instanceName']
         rec_data = cim.send_req(operation,  className=classname, instanceName=instancename )
