@@ -1,0 +1,23 @@
+* Task 2.2-2.3
+** TODO snmp handler with important commands
+** TODO simple react website with snmp/cim tab
+*** Typescript interface?
+*** TODO ability to choose CIM operations
+*** TODO ability to choose SNMP commands
+** TODO change type of CIM operation in handler
+** TODO API for webserv, json
+* TODO Task 2.4
+** TODO find difference between netconf layers
+** TODO list used transport layers
+* TODO Task 2.5
+** TODO Advantage and disadvantage of
+*** SNMP
+*** CIM 
+*** NETCONF
+** TODO  Comparison of SNMP/CIM/NETCONF, discussion
+
+
+
+
+
+
