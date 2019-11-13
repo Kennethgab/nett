@@ -81,6 +81,7 @@ class CIMHandler:
             return payload
         except pywbem.Error as exc:
             print('Operation failed: %s' % exc)
+            return exc
             '''
         else:
             print('Retrieved %s instances' % (len(insts)))
