@@ -44,7 +44,7 @@ class CIMHandler:
         enumerateInstances, enumerateInstanceNames, getClass needs className defined
         enumerateClassnames and enumerateClass needs neither className nor instanceName
         '''
-
+        payload = ''
         classname = className
         instancename = instanceName
         namespace = 'root/cimv2'
@@ -130,5 +130,5 @@ if __name__ == "__main__":
     #print(output)
     #output = cimConn.send_req("getInstance", instanceName='Linux_IPProtocolEndpoint.SystemCreationClassName="Linux_ComputerSystem",SystemName="ttm4128.item.ntnu.no",CreationClassName="Linux_IPProtocolEndpoint",Name="IPv4_lo"')
     #print(output)
-    #output = cimConn.send_req("enumerateClasses")
-    #print(output)
+
+

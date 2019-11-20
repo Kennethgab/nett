@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 
-class Snmp extends Component {
+class Cim extends Component {
     constructor(props) {
         super(props)
-        this.state = {method: '',
+        this.state = {
+            branch: 'cim',
+            className: '',
+            instanceName: '',
+            method: '',
                       result: ''}
         
 
@@ -88,4 +92,4 @@ class Snmp extends Component {
     }
 }
 
-export default Snmp
+export default Cim
