@@ -33,7 +33,6 @@ class webmHTTPRequestHandler(BaseHTTPRequestHandler):
             classname = parsed_data['className']
             instancename = parsed_data['instanceName']
             rec_data = cim.send_req(operation,  className=classname, instanceName=instancename )
-            #rec_data = cim.get_machine_info()
             self.wfile.write(bytes(rec_data,'utf-8'))
             self.wfile.write(response.getvalue())
         elif branch == 'snmp':
