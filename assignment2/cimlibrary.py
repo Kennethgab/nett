@@ -79,10 +79,10 @@ class CIMHandler:
                 if not instancepath:
                     raise RuntimeError("Found no instancename for that class")
                 instance = conn.GetInstance(instancepath)
-                return instance
-                #payload = f"Instance {instancename} in class {classname}:\n"
-               # for keyitem in instance.items():
-                #    payload += f"{keyitem[0]}: {keyitem[1]}\n"
+                #return instance
+                payload = f"Instance {instancename} in class {classname}:\n"
+                for keyitem in instance.items():
+                    payload += f"{keyitem[0]}: {keyitem[1]}\n"
 
             if operation == "enumerateClasses": #not working
                 classes = conn.EnumerateClasses(DeepInheritance=True)
