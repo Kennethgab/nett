@@ -1,13 +1,8 @@
 import subprocess
+import re
 
 
 class SNMPHandler:
-    snmpGet = 'snmpget'
-    snmpGetNext = 'snmpgetnext'
-    snmpBulkGet = 'snmpbulkget'
-    snmpWalk = 'snmpwalk'
-    snmpTable = 'snmptable'
-    operations = [snmpBulkGet,snmpWalk, snmpGet, snmpGetNext, snmpTable]
     
     def __init__(self,comstring, ip):
         self.ip = ip
@@ -17,7 +12,13 @@ class SNMPHandler:
    
    
     def send_req(self, operation, oid):
-        
+        snmpGet = 'snmpget'
+        snmpGetNext = 'snmpgetnext'
+        snmpBulkGet = 'snmpbulkget'
+        snmpWalk = 'snmpwalk'
+        snmpTable = 'snmptable'
+        operations = [snmpBulkGet,snmpWalk, snmpGet, snmpGetNext, snmpTable]
+     
         operation = operation.lower()
 
         try:
@@ -34,8 +35,13 @@ class SNMPHandler:
     def _os_callout(self, operation, oid):
         snmpcmd = "{} -v 2c -c {} {} {}".format(
         operation, self.comstring, self.ip, oid)
+        print(snmpcmd)
         p = subprocess.Popen(snmpcmd, stdout=subprocess.PIPE, shell=True)
         output = p.communicate()[0]
+        regs = '= \w+: (.+)'
+        output = re.search(regs, text.decode('utf-8'))
         return output
+
+
 
 

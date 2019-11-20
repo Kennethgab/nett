@@ -5,9 +5,9 @@ class Snmp extends Component {
         super(props)
         this.state = {
                         branch: 'snmp',
-                        method: '',
+                        method: 'smpget',
                       result: '',
-                      oid: 'snmpget'}
+                      oid: ''}
         
 
         this.handlechange = this.handlechange.bind(this);
@@ -67,7 +67,7 @@ class Snmp extends Component {
             <div className="row">
             <label>
                 OID:
-                <input type="text" value = {this.state.className} onChange=
+                <input type="text" value = {this.state.oid} onChange=
                 {this.handlechange} name='oid' />
             </label>
             </div>

@@ -19,7 +19,7 @@ class CIMHandler:
         enumerateInstances, enumerateInstanceNames, getClass needs className defined
         enumerateClassnames and enumerateClass needs neither className nor instanceName
         '''
-
+        payload = ''
         classname = className
         instancename = instanceName
         namespace = 'root/cimv2'

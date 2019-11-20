@@ -38,7 +38,7 @@ class webmHTTPRequestHandler(BaseHTTPRequestHandler):
         elif branch == 'snmp':
              operation = parsed_data['method']
              oid = parsed_data['oid']
-             rec_data = snmp.send_req(operation,oid)
+             rec_data = str(snmp.send_req(operation,oid))
              self.wfile.write(bytes(rec_data,'utf-8'))
              
 
