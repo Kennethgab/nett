@@ -21,11 +21,8 @@ class SNMPHandler:
      
         operation = operation.lower()
 
-        try:
-            if operation in operations:
-                return self._os_callout(operation, oid)
-        except:
-            pass
+        if operation in operations:
+            return self._os_callout(operation, oid)
 
 
         
@@ -39,8 +36,14 @@ class SNMPHandler:
         p = subprocess.Popen(snmpcmd, stdout=subprocess.PIPE, shell=True)
         output = p.communicate()[0]
         regs = '= \w+: (.+)'
-        output = re.search(regs, text.decode('utf-8'))
+        text = re.search(regs, output.decode('utf-8'))
         return output
+
+
+if __name__ == '__main__':
+    snmp = SNMPHandler('ttm4128', '129.241.209.4')
+    data = snmp.send_req('snmpget', 'system.sysDescr.0')
+    print(data)
 
 
 

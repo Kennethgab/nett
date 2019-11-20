@@ -17,7 +17,7 @@ class webmHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_POST(self):
         cim = CIMHandler()
         commstring = 'ttm4128'
-        ip = '192.241.209.4'
+        ip = '129.241.209.4'
         snmp = SNMPHandler(commstring, ip)
         content_length = int(self.headers['Content-Length'])
         body = self.rfile.read(content_length)

@@ -5,7 +5,7 @@ class Snmp extends Component {
         super(props)
         this.state = {
                         branch: 'snmp',
-                        method: 'smpget',
+                        method: 'snmpget',
                       result: '',
                       oid: ''}
         
