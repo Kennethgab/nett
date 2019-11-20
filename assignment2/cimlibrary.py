@@ -16,16 +16,15 @@ class CIMHandler:
         '''
         operations (str) allowed: enumerateInstances, enumerateInstanceNames, getInstance,
                             enumerateClassNames, enumerateClasses, getClass
-        getClass needs className defined
+
         getInstance needs instanceName and className defined
-        enumerateInstances, enumerateInstanceNames, getClass needs className defined
-        enumerateClassnames and enumerateClass needs neither className nor instanceName
+        enumerateInstances, enumerateInstanceNames and getClass needs className defined
+        enumerateClassNames and enumerateClass needs neither className nor instanceName
         '''
         payload = ''
         classname = className
         instancename = instanceName
         namespace = 'root/cimv2'
-        #linebreak
 
         conn = pywbem.WBEMConnection(self.root_url, ('user','password'),
                 default_namespace=namespace,
