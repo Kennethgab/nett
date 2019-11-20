@@ -3,8 +3,11 @@ import React, { Component } from 'react'
 class Snmp extends Component {
     constructor(props) {
         super(props)
-        this.state = {method: '',
-                      result: ''}
+        this.state = {
+                        branch: 'snmp',
+                        method: '',
+                      result: '',
+                      oid: 'snmpget'}
         
 
         this.handlechange = this.handlechange.bind(this);
@@ -12,6 +15,7 @@ class Snmp extends Component {
 
     }
         handlechange(event) {
+            console.log("change is working");
             const target = event.target;
             const value = target.value;
             const name = target.name;
@@ -21,6 +25,7 @@ class Snmp extends Component {
 }
        
         handleSubmit(event) {
+            console.log("submit is working)");
             event.preventDefault();
 
             fetch("http://localhost:8000", {
@@ -51,29 +56,22 @@ class Snmp extends Component {
             <label>
                 CIM operation:  
                 <select value={this.state.method} name = 'method' onChange={this.handlechange}>
-                    <option value="enumerateInstances">Enumerate instances </option>
-                    <option value="enumerateInstanceNames">Enumerate instance names</option>
-                    <option value="getInstance">Get instance</option>
-                    <option value="enumerateClassNames">Enumerate classnames</option>
-                    <option value="enumerateClasses">Enumerate classes</option>
-                    <option value="getClass">Get class</option>
+                    <option value="snmpget">get request </option>
+                    <option value="snmpgetnext">get-next request</option>
+                    <option value="snmpbulkget">bulk request</option>
+                    <option value="snmpwalk">snmp walk</option>
+                    <option value="snmptable">Snmp Table</option>
                 </select>
             </label>
             </div>
             <div className="row">
             <label>
-                Class Name:
+                OID:
                 <input type="text" value = {this.state.className} onChange=
-                {this.handlechange} name='className' />
+                {this.handlechange} name='oid' />
             </label>
             </div>
-            <div className="row">
-            <label>
-                Instance Name:
-                <input type="text" value = {this.state.instanceName} onChange=
-                {this.handlechange} name='instanceName' />
-            </label>
-            </div>
+
 
             <div className="row">
             <input type="submit" value="Submit" />

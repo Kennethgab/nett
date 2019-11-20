@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Cim from './components/Cim.jsx'
+import Snmp from './components/Snmp.jsx'
 import {
     BrowserRouter as Router,
     Switch,
@@ -39,7 +40,7 @@ class Shell extends Component {
                         <Cim />
                     </Route>
                     <Route path="/SNMP">
-                        <Cim />
+                        <Snmp />
                         </Route>
                     <Redirect from="/" to="/cim" />
                 </Switch>
